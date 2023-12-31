@@ -18,7 +18,7 @@
 
         <!-- form1 -->
         <form id="todo-form">
-            <p>Adicione sua tarefa:</p>
+            <p>Adicione a sua tarefa:</p>
             <div class="form-control">
                 <input type="text" id="todo-input" placeholder="O que voce vai fazer?">
                 <button type="submit">
@@ -40,15 +40,41 @@
         </form>
         <!-- barra de ferramentas -->
         <div id="toolbar">
-            <div class="search">
+            <div id="search">
                 <h4>Pesquisar:</h4>
                 <form>
                     <input type="text" id="search-input" placeholder="Buscar">
+                    <button id="delete-button">
+                        <i class="fa-solid fa-delete-left"></i>
+                    </button>
                 </form>
-
+                <!-- filtros de opçoes -->
+                <div id="filter">
+                    <h4>Filtrar:</h4>
+                    <select id="filter-select">
+                        <option value="all">Todos</option>
+                        <option value="done">Feitos</option>
+                        <option value="todo">A fazer</option>
+                    </select>
+                </div>
             </div>
+        </div>
+        <!-- lista de tarefas -->
+        <div id="todo-list">
+            <div class="todo">
+                <h3>Estou fazendo alguma coisa...</h3>
+                <button class="finish-todo">
+                    <i class="fa-solid fa-check"></i>
+                </button>
 
+                <button class="edit-todo">
+                    <i class="fa-solid fa-pen"></i>
+                </button>
 
+                <button class="remove-todo">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>  
         </div>
     </div>
 </body>
