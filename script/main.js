@@ -5,6 +5,8 @@ const editInput = document.querySelector("#edit-input"); // inpit da segunda cia
 const editForm = document.querySelector("#edit-form"); //segunda caixa escondido
 const cancelEditButton = document.querySelector("#cancel__edit-button"); //caixa escondida
 
+let oldInputValue;
+let todoTitle;
 
 
 //adicionando tarefa 
@@ -45,7 +47,18 @@ function toggleForms(){
 
 
 }
+    
+    const updateTodo = (text)=>{
+        const todos = document.querySelectorAll('.todo');
+        todos.forEach((todo)=> {
+            let todoTitle = todo.querySelector('h3');
 
+            if(todoTitle.innerText === oldInputValue){
+                todoTitle.innerHTML = text;
+            }
+
+        })
+    }
 
 
 
@@ -62,25 +75,43 @@ todoForm.addEventListener('submit', (event) =>{
 })
 
 document.addEventListener('click', (event)=>{
-    const targetEl = event.target
-    const parentEl = targetEl.closest('div')
+    const targetEl = event.target;
+    const parentEl = targetEl.closest('div');
+    let = todoTitle;
+    if(parentEl && parentEl.querySelector('h3')){
+        todoTitle = parentEl.querySelector('h3').innerText;
+    }
+
 
     if(targetEl.classList.contains('finish-todo')){
-        parentEl.classList.toggle('done')
+        parentEl.classList.toggle('done');
     }
 
     
     if(targetEl.classList.contains('remove-todo')){
-        parentEl.remove()
+        parentEl.remove();
     }
     
     if(targetEl.classList.contains('edit-todo')){
-        toggleForms()
+        toggleForms();
+        
+        editInput.value = todoTitle;
+        oldInputValue = todoTitle;
     }
 })
 
 cancelEditButton.addEventListener('click', (event)=>{
-    event.preventDefault()
+    event.preventDefault();
 
+    toggleForms();
+})
+
+editForm.addEventListener('submit', (event)=>{
+    event.preventDefault()
+    const editInputValue = editInput.value
+    
+    if(editInputValue){
+        updateTodo(editInputValue)
+    }
     toggleForms()
 })
